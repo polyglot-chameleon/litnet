@@ -6,15 +6,19 @@ import org.neo4j.driver.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.neo4j.core.ReactiveDatabaseSelectionProvider;
 import org.springframework.data.neo4j.core.transaction.ReactiveNeo4jTransactionManager;
+import org.springframework.data.neo4j.repository.config.EnableReactiveNeo4jRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @org.springframework.context.annotation.Configuration
+@EnableReactiveNeo4jRepositories(basePackages = "repos")
+@EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
     @Bean(name = "reactiveTransactionManager")
     public ReactiveNeo4jTransactionManager reactiveTransactionManager(Driver driver,
-                                                                      ReactiveDatabaseSelectionProvider databaseNameProvider) {
+            ReactiveDatabaseSelectionProvider databaseNameProvider) {
         return new ReactiveNeo4jTransactionManager(driver, databaseNameProvider);
     }
 

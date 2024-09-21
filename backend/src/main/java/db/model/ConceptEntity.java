@@ -1,9 +1,14 @@
-package model;
+package db.model;
 
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 @Node("Concept")
 public class ConceptEntity {
     @Id
