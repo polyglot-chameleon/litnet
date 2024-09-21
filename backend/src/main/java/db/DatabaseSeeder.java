@@ -49,9 +49,12 @@ public class DatabaseSeeder {
         for (int i = 0; i < 5; i++) {
             PoemEntity poem = new PoemEntity(faker.book.title(), faker.lorem.paragraph());
 
-            poem.setAuthor(AuthorEntity.builder().fullName(faker.artist.name()).build());
-            poem.setConcepts(new HashSet<ConceptEntity>(
-                    Arrays.asList(ConceptEntity.builder().name(faker.book.genre()).build())));
+            poem.setAuthor(new AuthorEntity(faker.artist.name()));
+            poem.setConcepts(
+                    new HashSet<ConceptEntity>(
+                            Arrays.asList(
+                                    new ConceptEntity(faker.book.genre()))));
+
             poems.add(poem);
         }
 
