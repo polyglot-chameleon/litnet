@@ -28,11 +28,11 @@ public class AppConfig implements WebMvcConfigurer {
                 .withDialect(Dialect.NEO4J_5).build();
     }
 
+    /* meh */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS").allowedOrigins("*");
     }
-
 
 }
