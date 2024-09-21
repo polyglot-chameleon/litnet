@@ -1,6 +1,6 @@
 services:
   neo4j:
-    image: "neo4j:ubi9"
+    image: "neo4j:5.23-community-bullseye"
     volumes:
       - $HOME/.neo4j/data:/data
     ports:

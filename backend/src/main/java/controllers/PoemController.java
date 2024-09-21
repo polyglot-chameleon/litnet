@@ -1,19 +1,19 @@
 package controllers;
 
-import model.PoemEntity;
-import model.PoemRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import db.model.PoemEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import repos.PoemRepository;
 
 @RestController
 @RequestMapping("/poems")
-public class PoemController
-{
+public class PoemController {
     private final PoemRepository poemRepository;
 
-    public PoemController(PoemRepository poemRepository){
+    public PoemController(PoemRepository poemRepository) {
         this.poemRepository = poemRepository;
     }
 
@@ -23,7 +23,7 @@ public class PoemController
     }
 
     @PutMapping
-    Mono<PoemEntity> createOrUpdateMovie(@RequestBody PoemEntity newPoem) {
+    Mono<PoemEntity> createOrUpdate(@RequestBody PoemEntity newPoem) {
         return poemRepository.save(newPoem);
     }
 
