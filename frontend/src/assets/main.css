@@ -1,33 +1,74 @@
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  font-size: larger;
+  background-color: antiquewhite;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+
+main {
+  position: absolute;
+  left: 6vw;
+  width: 95vw;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+a {
+  color: lightgreen
+}
+
+article {
+  background-color: rgba(127, 255, 212, 0.39);
+}
+
+article.index {
+  max-width: 20vw;
+  border-radius: 5%;
+  padding: 0.5cap ;
+  margin: .5cap;
+  display: inline grid;
+}
+
+details:hover {
+  cursor: pointer;
+}
+
+aside {
+  position: fixed;
+    width: 5vw;
+    height: 100vh;
+    background-color: rgba(255, 203, 255, 0.936);
+}
+
+aside > section {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: 5vw;
+    padding: 1%;
+    background-color: rgba(255, 203, 255, 0.936);
+    transition: width .2s ease;
+}
+
+aside:hover > section {
+  visibility:visible;
+  width: 30vw;
+  height: 100vh;
+}
+
+search > input {
+  width: 100%;
+  padding: 1%;
+}
+
+
+@media (max-width: 600px) {
+  article {
+    min-width: 100%;
   }
-}
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+  aside  {
+      visibility: hidden;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  main {
+    left: 0vw;
   }
 }
