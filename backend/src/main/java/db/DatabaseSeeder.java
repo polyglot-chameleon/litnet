@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import db.model.AuthorEntity;
 import db.model.ConceptEntity;
@@ -32,14 +31,12 @@ public class DatabaseSeeder {
     private static final Logger log = Logger.getLogger(String.valueOf(DatabaseSeeder.class));
 
     @EventListener
-    @Transactional
     public Mono<Void> down(ContextRefreshedEvent event) {
         log.info("DOWN");
         return repo.deleteAll();
     }
 
     @EventListener
-    @Transactional
     public Flux<PoemEntity> seed(ContextRefreshedEvent event) {
         log.info("UP");
         Faker faker = new Faker();
