@@ -17,6 +17,11 @@ public class PoemController {
         this.poemRepository = poemRepository;
     }
 
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    Mono<PoemEntity> getPoemById(@PathVariable String id) {
+        return poemRepository.findById(id);
+    }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     Flux<PoemEntity> getAllPoems() {
         return poemRepository.findAll();
