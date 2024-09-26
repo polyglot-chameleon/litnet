@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { Poem } from './Poem'
+import { initPoem, type Poem } from './Poem'
 
 export const usePoemStore = defineStore('poems', () => {
   const poems = ref<Poem[]>([])
-  const currentPoem = ref<Poem>({id: "", title: "", content: "", author: {id: "", fullName: ""}, concepts: []})
+  const currentPoem = ref<Poem>(initPoem)
+  const searchResults = ref<Poem[]>([])
+  const searchTerm = ref<string>("")
+
 
   const getAllPoems = async () => {
     const resp = await fetch(`${import.meta.env.VITE_API_URL}/poems`)

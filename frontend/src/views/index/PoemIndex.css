@@ -1,0 +1,8 @@
+article.index {
+    max-width: 20vw;
+    display: inline grid;
+  }
+
+  details:hover {
+    cursor: pointer;
+  }

@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { usePoemStore } from '@/stores/poems'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-const props = defineProps({
-  id: String
-})
+const { id } = defineProps({ id: String })
 
+const route = useRoute()
 const store = usePoemStore()
 
-onMounted(() => store.getPoemById(props.id!))
+onMounted(() => store.getPoemById(id!))
+watch(route, () => store.getPoemById(id!))
 </script>
 
 <template>
