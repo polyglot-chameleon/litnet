@@ -43,8 +43,8 @@ public class DatabaseSeeder {
 
         List<PoemEntity> poems = new ArrayList<PoemEntity>();
 
-        for (int i = 0; i < 5; i++) {
-            PoemEntity poem = new PoemEntity(faker.book.title(), faker.lorem.paragraph());
+        for (int i = 0; i < 50; i++) {
+            PoemEntity poem = new PoemEntity(faker.book.title(), faker.lorem.sentence(), faker.lorem.paragraph(10));
 
             poem.setAuthor(new AuthorEntity(faker.artist.name()));
             poem.setConcepts(
