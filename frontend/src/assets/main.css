@@ -16,48 +16,10 @@ a {
 
 article {
   background-color: rgba(127, 255, 212, 0.39);
-}
-
-article.index {
-  max-width: 20vw;
   border-radius: 5%;
-  padding: 0.5cap ;
+  padding: 0.5cap;
   margin: .5cap;
-  display: inline grid;
 }
-
-details:hover {
-  cursor: pointer;
-}
-
-aside {
-  position: fixed;
-    width: 5vw;
-    height: 100vh;
-    background-color: rgba(255, 203, 255, 0.936);
-}
-
-aside > section {
-    visibility: hidden;
-    position: fixed;
-    top: 0;
-    width: 5vw;
-    padding: 1%;
-    background-color: rgba(255, 203, 255, 0.936);
-    transition: width .2s ease;
-}
-
-aside:hover > section {
-  visibility:visible;
-  width: 30vw;
-  height: 100vh;
-}
-
-search > input {
-  width: 100%;
-  padding: 1%;
-}
-
 
 @media (max-width: 600px) {
   article {
