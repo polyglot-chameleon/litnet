@@ -15,14 +15,7 @@ export const usePoemStore = defineStore('poems', () => {
   }
 
   const getPoemById = async (id: string ) => {
-    if (poems.value) {
-      currentPoem.value = poems.value.find(p => p.id === id)!
-    } else {
-      const resp = await fetch(`${import.meta.env.VITE_API_URL}/poems/${id}`)
-      currentPoem.value = await resp.json()
-    }
-
-
+      poems.value ? currentPoem.value = poems.value.find(p => p.id === id)! : fetch(`${import.meta.env.VITE_API_URL}/poems/${id}`).then(resp => resp.json()).then(data => currentPoem.value = data)
   }
 
   const searchPoem = async (term: string) => {
