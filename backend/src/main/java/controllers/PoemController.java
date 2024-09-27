@@ -40,9 +40,9 @@ public class PoemController {
     @PostMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     Publisher<PoemEntity> search(@RequestBody PoemEntity examplePoem) {
 
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("content", m -> m.contains().ignoreCase())
-                .withMatcher("feature", m -> m.contains().ignoreCase());
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase()
+                .withMatcher("content", m -> m.contains())
+                .withMatcher("feature", m -> m.contains());
 
         Example example = Example.of(examplePoem, matcher);
 
