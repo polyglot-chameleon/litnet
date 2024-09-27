@@ -1,22 +1,23 @@
 aside {
+  text-align: center;
     position: fixed;
       width: 5vw;
-      height: 100vh;
-      background-color: rgba(255, 203, 255, 0.936);
-  }
-
-  aside > section {
-      visibility: hidden;
-      position: fixed;
-      top: 0;
-      width: 5vw;
-      padding: 1%;
+      height: 97vh;
+      padding: .3vw;
+      border-radius: 25px;
       background-color: rgba(255, 203, 255, 0.936);
       transition: width .2s ease;
+
+      > section {
+        visibility: hidden;
+        width: 100%
+      }
   }
 
-  aside:hover > section {
-    visibility:visible;
-    width: 30vw;
-    height: 100vh;
+aside:hover {
+  width: 30vw;
+
+  > section {
+    visibility: visible;
   }
+}

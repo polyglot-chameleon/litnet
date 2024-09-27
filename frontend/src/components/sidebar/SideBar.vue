@@ -4,11 +4,9 @@ import SearchField from '../search/SearchField.vue'
 
 <template>
   <aside>
-    hover me
+    <RouterLink to="/">🏠</RouterLink>
 
     <section>
-      <RouterLink to="/">Home</RouterLink>
-
       <SearchField />
     </section>
   </aside>

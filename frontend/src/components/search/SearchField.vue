@@ -4,16 +4,19 @@ import { usePoemStore } from '@/stores/poems'
 const store = usePoemStore()
 
 const searchPoem = (event: Event) => {
-  setTimeout(() => store.searchPoem((event.target as HTMLTextAreaElement).value), 1)
+  const searchTerm = (event.target as HTMLTextAreaElement).value
+  searchTerm !== '' && store.searchPoem(searchTerm)
 }
 </script>
 
 <template>
   <search>
-    <input type="text" placeholder="Search poems..." @change="searchPoem($event)" />
+    <input type="text" placeholder="Search poems..." @input="searchPoem($event)" />
   </search>
 
   <output>
+    <span v-if="store.searchResults.length === 0">No results</span>
+
     <span v-for="result in store.searchResults" :key="result.id">
       <RouterLink :to="{ name: 'show', params: { id: result.id } }">
         <span>{{
