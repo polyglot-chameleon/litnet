@@ -17,7 +17,11 @@ onMounted(() => store.getAllPoems())
 
     <details>
       <summary>🔎</summary>
-      <p>{{ poem.content }}</p>
+      <p>{{ poem.feature }}</p>
     </details>
   </article>
 </template>
+
+<style lang="css" scoped>
+@import 'PoemIndex.css';
+</style>

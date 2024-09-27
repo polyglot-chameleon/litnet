@@ -18,6 +18,7 @@ public class PoemEntity {
     private String id;
 
     private final String title;
+    private final String feature;
     private final String content;
 
     @Relationship
