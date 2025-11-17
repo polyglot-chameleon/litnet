@@ -1,8 +1,0 @@
-services:
-  neo4j:
-    image: "neo4j:5.23-community-bullseye"
-    volumes:
-      - $HOME/.neo4j/data:/data
-    ports:
-      - 7474:7474
-      - 7687:7687
