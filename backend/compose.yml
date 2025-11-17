@@ -6,3 +6,18 @@ services:
     ports:
       - 7474:7474
       - 7687:7687
+
+  spring:
+    image: "gradle:8.14.3-jdk21-jammy"
+    volumes:
+      - .:/home/gradle/app
+      - ~/.keystore:/home/gradle/.keystore
+    env_file:
+      - .env
+    environment:
+      - GRADLE_USER_HOME=/home/gradle
+      - SSL_KEYSTORE=/home/gradle/.keystore
+    working_dir: /home/gradle/app
+    entrypoint: "gradle bootRun"
+    depends_on:
+      - neo4j
