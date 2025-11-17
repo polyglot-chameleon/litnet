@@ -13,12 +13,14 @@ services:
       - ./backend:/home/gradle/app
       - ~/.keystore:/home/gradle/.keystore
     env_file:
-      - .env
+      - backend/.env
     environment:
       - GRADLE_USER_HOME=/home/gradle
       - SSL_KEYSTORE=/home/gradle/.keystore
       - DB_URL=neo4j://neo4j:7687
     working_dir: /home/gradle/app
     entrypoint: "gradle bootRun"
+    ports:
+      - 8080:8080
     depends_on:
       - neo4j

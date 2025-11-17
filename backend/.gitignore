@@ -6,6 +6,8 @@ build/
 !**/src/test/**/build/
 
 .env
+.tmp
+src/main/resources/static
 
 ### STS ###
 .apt_generated
