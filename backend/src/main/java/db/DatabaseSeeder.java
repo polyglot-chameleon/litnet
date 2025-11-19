@@ -43,19 +43,22 @@ public class DatabaseSeeder {
 
         List<PoemEntity> poems = new ArrayList<PoemEntity>();
 
-        for (int i = 0; i < 50; i++) {
-            PoemEntity poem = new PoemEntity(faker.book.title(), faker.lorem.sentence(), faker.lorem.paragraph(10));
+        for (int i = 0; i < 100; i++) {
+            PoemEntity poem = new PoemEntity(
+                faker.book.title(),
+                faker.lorem.paragraphs(10)
+            );
 
             poem.setAuthor(new AuthorEntity(faker.artist.name()));
             poem.setConcepts(
-                    new HashSet<ConceptEntity>(
-                            Arrays.asList(
-                                    new ConceptEntity(faker.book.genre()))));
+                new HashSet<ConceptEntity>(
+                    Arrays.asList(new ConceptEntity(faker.book.genre()))
+                )
+            );
 
             poems.add(poem);
         }
 
         return repo.saveAll(poems);
     }
-
 }
