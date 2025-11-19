@@ -7,12 +7,6 @@ export const router = createRouter({
       path: '/',
       name: 'index',
       component: () => import('../views/index/PoemIndex.vue')
-    },
-    {
-      path: '/:id',
-      name: 'show',
-      component: () => import('../views/show/PoemShow.vue'),
-      props: true
     }
   ]
 })
