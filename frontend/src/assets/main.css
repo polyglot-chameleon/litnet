@@ -10,23 +10,23 @@ main {
 }
 
 a {
-  color: lightgreen
+  color: lightgreen;
 }
 
 article {
   background-color: rgba(127, 255, 212, 0.39);
   border-radius: 25px;
   padding: 0.5cap;
-  margin: .5cap;
+  margin: 0.5cap;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   article {
-    min-width: 100%;
+    min-width: 95%;
   }
 
-  aside  {
-      visibility: hidden;
+  aside {
+    visibility: hidden;
   }
 
   main {

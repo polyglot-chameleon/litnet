@@ -9,16 +9,12 @@ onMounted(() => store.getAllPoems())
 
 <template>
   <article class="index" v-for="poem in store.poems" :key="poem.id">
-    <RouterLink :to="{ name: 'show', params: { id: poem.id } }"
-      ><h2>{{ poem.title }}</h2></RouterLink
-    >
-    <em>{{ poem.author.fullName }}</em>
-    <em v-for="concept in poem.concepts" :key="concept.id">{{ concept.name }}</em>
+    <h3>{{ poem.title }}</h3>
+    <em>{{ poem.author.fullName }}</em
+    ><br />
+    <span v-for="concept in poem.concepts" :key="concept.id">{{ concept.name }}</span>
 
-    <details>
-      <summary>🔎</summary>
-      <p>{{ poem.feature }}</p>
-    </details>
+    <p v-for="paragraph in poem.content" :key="paragraph">{{ paragraph }}</p>
   </article>
 </template>
 
