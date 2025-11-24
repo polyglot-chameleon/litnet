@@ -4,7 +4,16 @@ import { onMounted } from 'vue'
 
 const store = usePoemStore()
 
-onMounted(() => store.getAllPoems())
+onMounted(() => {
+  store.getNextPoem()
+
+  window.addEventListener('scroll', () => {
+    Math.abs(
+      document.documentElement.scrollHeight -
+        (document.documentElement.scrollTop + window.innerHeight)
+    ) <= 10 && store.getNextPoem()
+  })
+})
 </script>
 
 <template>

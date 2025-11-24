@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.Relationship.Direction;
 
 @Data
 @Node("Poem")
@@ -15,14 +16,14 @@ public class PoemEntity {
 
     @Id
     @GeneratedValue
-    private String id;
+    private String elementId;
 
     private final String title;
     private final List<String> content;
 
-    @Relationship
+    @Relationship(type = "AUTHOR", direction = Direction.OUTGOING)
     private AuthorEntity author;
 
-    @Relationship
+    @Relationship(type = "CONCEPTS", direction = Direction.OUTGOING)
     private Set<ConceptEntity> concepts = new HashSet<ConceptEntity>();
 }
