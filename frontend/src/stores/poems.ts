@@ -8,9 +8,17 @@ export const usePoemStore = defineStore('poems', () => {
   const searchResults = ref<Poem[]>([])
   const searchTerm = ref<string>('')
 
-  const getAllPoems = async () => {
-    const resp = await fetch(`/poems`)
-    poems.value = await resp.json()
+  const getNextPoem = async () => {
+    const resp = await fetch('/poems/next', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(currentPoem.value)
+    })
+    const freshPoem = await resp.json()
+    poems.value.push(freshPoem)
+    currentPoem.value = freshPoem
   }
 
   const searchPoem = async (term: string) => {
@@ -26,5 +34,5 @@ export const usePoemStore = defineStore('poems', () => {
     searchResults.value = await resp.json()
   }
 
-  return { poems, getAllPoems, currentPoem, searchTerm, searchResults, searchPoem }
+  return { poems, getNextPoem, currentPoem, searchTerm, searchResults, searchPoem }
 })
