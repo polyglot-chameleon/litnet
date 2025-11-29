@@ -42,9 +42,11 @@ public class DatabaseSeeder {
 
         List<PoemEntity> poems = new ArrayList<PoemEntity>();
         List<AuthorEntity> authors = new ArrayList<AuthorEntity>();
+        List<ConceptEntity> conceptDomain = new ArrayList<ConceptEntity>();
 
         for (int i = 0; i < 50; i++) {
             authors.add(new AuthorEntity(faker.artist.name()));
+            conceptDomain.add(new ConceptEntity(faker.book.genre()));
         }
 
         for (int i = 0; i < 1000; i++) {
@@ -57,10 +59,9 @@ public class DatabaseSeeder {
 
             Set<ConceptEntity> concepts = new HashSet<ConceptEntity>();
             for (int j = 0; j < 5; j++) {
-                concepts.add(new ConceptEntity(faker.book.genre()));
+                concepts.add(conceptDomain.get((i + j) % 50));
             }
             poem.setConcepts(concepts);
-
             poems.add(poem);
         }
 
