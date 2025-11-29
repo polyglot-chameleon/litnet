@@ -23,6 +23,6 @@ export type Author = {
   fullName: string
 } & withId
 
-type Concept = {
+export type Concept = {
   name: string
 } & withId

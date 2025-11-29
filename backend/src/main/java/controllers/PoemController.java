@@ -1,6 +1,7 @@
 package controllers;
 
 import db.model.AuthorEntity;
+import db.model.ConceptEntity;
 import db.model.PoemEntity;
 import org.reactivestreams.Publisher;
 import org.springframework.data.domain.Example;
@@ -34,6 +35,11 @@ public class PoemController {
     @PostMapping(path = "/author", produces = MediaType.APPLICATION_JSON_VALUE)
     Flux<PoemEntity> getPoemsByAuthor(@RequestBody AuthorEntity author) {
         return poemRepository.getPoemsByAuthor(author.getElementId());
+    }
+
+    @PostMapping(path = "/concept", produces = MediaType.APPLICATION_JSON_VALUE)
+    Flux<PoemEntity> getPoemsByConcept(@RequestBody ConceptEntity concept) {
+        return poemRepository.getPoemsByConcept(concept.getElementId());
     }
 
     @PostMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)

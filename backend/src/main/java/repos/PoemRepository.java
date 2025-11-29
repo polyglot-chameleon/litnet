@@ -33,6 +33,19 @@ public interface PoemRepository
 
     @Query(
         """
+        MATCH (a:Author)<-[ar:AUTHOR]-(p:Poem)-[cr:CONCEPTS]->(c:Concept)
+        WITH a, ar, p, COLLECT(cr) AS crs, COLLECT(c) AS cs
+        WHERE ANY(concept IN cs WHERE elementId(concept) = $conceptId)
+        RETURN a, ar, p, crs, cs
+        ORDER BY rand();
+        """
+    )
+    public Flux<PoemEntity> getPoemsByConcept(
+        @Param("conceptId") String conceptId
+    );
+
+    @Query(
+        """
         MATCH (p1:Poem)
         WHERE elementId(p1) = "$poemId"
         MATCH (a:Author)<-[ar:AUTHOR]-(p2:Poem)-[cr:CONCEPTS]->(c:Concept)

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { initPoem, type Poem, type Author } from './Poem'
+import { initPoem, type Poem, type Author, type Concept } from './Poem'
 
 export const usePoemStore = defineStore('poems', () => {
   const poems = ref<Poem[]>([])
@@ -33,6 +33,18 @@ export const usePoemStore = defineStore('poems', () => {
     poems.value = freshPoems
   }
 
+  const getPoemsByConcept = async (concept: Concept) => {
+    const resp = await fetch('poems/concept', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(concept)
+    })
+    const freshPoems = await resp.json()
+    poems.value = freshPoems
+  }
+
   const searchPoem = async (term: string) => {
     searchTerm.value = term
 
@@ -50,6 +62,7 @@ export const usePoemStore = defineStore('poems', () => {
     poems,
     getNextPoem,
     getPoemsByAuthor,
+    getPoemsByConcept,
     currentPoem,
     searchTerm,
     searchResults,
