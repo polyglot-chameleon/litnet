@@ -17,11 +17,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <article class="index" v-for="poem in store.poems" :key="poem.id">
+  <article class="index" v-for="poem in store.poems" :key="poem.elementId">
     <h3>{{ poem.title }}</h3>
-    <em>{{ poem.author.fullName }}</em
+    <em @click="store.getPoemsByAuthor(poem.author)">{{ poem.author.fullName }}</em
     ><br />
-    <span v-for="concept in poem.concepts" :key="concept.id">{{ concept.name }}</span>
+    <span v-for="concept in poem.concepts" :key="concept.elementId">{{ concept.name }}</span>
 
     <p v-for="paragraph in poem.content" :key="paragraph">{{ paragraph }}</p>
   </article>
