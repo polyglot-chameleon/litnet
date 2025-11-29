@@ -1,5 +1,7 @@
 package controllers;
 
+import db.model.AuthorEntity;
+import db.model.ConceptEntity;
 import db.model.PoemEntity;
 import org.reactivestreams.Publisher;
 import org.springframework.data.domain.Example;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import repos.PoemRepository;
 
@@ -27,6 +30,16 @@ public class PoemController {
         return poemRepository
             .findSimilar(lastPoem.getElementId())
             .switchIfEmpty(poemRepository.random());
+    }
+
+    @PostMapping(path = "/author", produces = MediaType.APPLICATION_JSON_VALUE)
+    Flux<PoemEntity> getPoemsByAuthor(@RequestBody AuthorEntity author) {
+        return poemRepository.getPoemsByAuthor(author.getElementId());
+    }
+
+    @PostMapping(path = "/concept", produces = MediaType.APPLICATION_JSON_VALUE)
+    Flux<PoemEntity> getPoemsByConcept(@RequestBody ConceptEntity concept) {
+        return poemRepository.getPoemsByConcept(concept.getElementId());
     }
 
     @PostMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)

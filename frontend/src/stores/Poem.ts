@@ -1,5 +1,5 @@
 interface withId {
-  id: string
+  elementId: string
 }
 
 export type Poem = {
@@ -11,18 +11,18 @@ export type Poem = {
 } & withId
 
 export const initPoem = {
-  id: '',
+  elementId: '',
   title: '',
   feature: '',
   content: [],
-  author: { fullName: '', id: '' },
+  author: { fullName: '', elementId: '' },
   concepts: []
 } satisfies Poem
 
-type Author = {
+export type Author = {
   fullName: string
 } & withId
 
-type Concept = {
+export type Concept = {
   name: string
 } & withId

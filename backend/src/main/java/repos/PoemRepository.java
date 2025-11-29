@@ -4,6 +4,7 @@ import db.model.PoemEntity;
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.repository.query.Param;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface PoemRepository
@@ -17,6 +18,31 @@ public interface PoemRepository
         """
     )
     public Mono<PoemEntity> random();
+
+    @Query(
+        """
+        MATCH (a:Author)<-[ar:AUTHOR]-(p:Poem)-[cr:CONCEPTS]->(c:Concept)
+        WHERE elementId(a) = $authorId
+        RETURN a, ar, p, COLLECT(cr), COLLECT(c)
+        ORDER BY rand()
+        """
+    )
+    public Flux<PoemEntity> getPoemsByAuthor(
+        @Param("authorId") String authorId
+    );
+
+    @Query(
+        """
+        MATCH (a:Author)<-[ar:AUTHOR]-(p:Poem)-[cr:CONCEPTS]->(c:Concept)
+        WITH a, ar, p, COLLECT(cr) AS crs, COLLECT(c) AS cs
+        WHERE ANY(concept IN cs WHERE elementId(concept) = $conceptId)
+        RETURN a, ar, p, crs, cs
+        ORDER BY rand();
+        """
+    )
+    public Flux<PoemEntity> getPoemsByConcept(
+        @Param("conceptId") String conceptId
+    );
 
     @Query(
         """

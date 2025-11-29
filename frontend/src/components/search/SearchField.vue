@@ -17,8 +17,8 @@ const searchPoem = (event: Event) => {
   <output>
     <span v-if="store.searchResults.length === 0">No results</span>
 
-    <span v-for="result in store.searchResults" :key="result.id">
-      <RouterLink :to="{ name: 'show', params: { id: result.id } }">
+    <span v-for="result in store.searchResults" :key="result.elementId">
+      <RouterLink :to="{ name: 'show', params: { elementId: result.elementId } }">
         <span>{{
           result.content.slice(
             result.content.indexOf(store.searchTerm) - 10,
